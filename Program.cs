@@ -1,11 +1,28 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Exp.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ExpContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ExpContext") ?? throw new InvalidOperationException("Connection string 'ExpContext' not found.")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ResponseContext")
+));
 
 // Add services to the container.
+
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    })
+        .AddCookie(options =>
+        {
+            options.LoginPath = "/account/google-login";
+        })
+        .AddGoogle(options =>
+        {
+            options.ClientId = "875386829601-cjsafmch1qtbc2joob6q991q71tlqr6d.apps.googleusercontent.com";
+            options.ClientSecret = "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";
+        });
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -22,6 +39,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication(); 
 
 app.UseAuthorization();
 

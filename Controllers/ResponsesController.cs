@@ -7,14 +7,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Exp.Data;
 using Exp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Exp.Controllers
 {
-    public class ResponseController : Controller
+    [Authorize]
+    public class ResponsesController : Controller
     {
         private readonly ExpContext _context;
 
-        public ResponseController(ExpContext context)
+        public ResponsesController(ExpContext context)
         {
             _context = context;
         }
@@ -159,6 +161,11 @@ namespace Exp.Controllers
         private bool ResponseExists(Guid id)
         {
           return (_context.Response?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        public IActionResult Test()
+        {
+            return View();
         }
     }
 }

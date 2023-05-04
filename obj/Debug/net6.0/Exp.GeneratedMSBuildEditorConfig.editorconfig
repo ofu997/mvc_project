@@ -16,12 +16,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Beraten-Projects\Exp
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Beraten-Projects/Exp/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Beraten-Projects/Exp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Beraten-Projects/Exp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Beraten-Projects/Exp/Views/Home/Test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Beraten-Projects/Exp/Views/Responses/Create.cshtml]
@@ -44,8 +52,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Response/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VcSW5kZXguY3NodG1s
+[D:/Beraten-Projects/Exp/Views/Responses/Test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXFRlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Beraten-Projects/Exp/Views/Shared/Error.cshtml]
