@@ -36,7 +36,11 @@ namespace Exp.Controllers
                     claim.Value
                 });
 
-            return Json(claims); 
+            var username = claims.FirstOrDefault(claim => claim.Type == System.Security.Claims.ClaimTypes.Email);
+
+            //return Json(username); 
+            return RedirectToRoute(new { controller = "Responses", action = "Index" });
+
         }
     }
 }

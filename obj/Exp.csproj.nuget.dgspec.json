@@ -63,6 +63,10 @@
               "target": "Package",
               "version": "[7.0.6, )"
             },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[1.7.2, )"
+            },
             "microsoft.aspnetcore.authentication.google": {
               "target": "Package",
               "version": "[7.0.5, )"

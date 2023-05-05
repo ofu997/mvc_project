@@ -15,6 +15,8 @@ namespace Exp.Models
 
         public string? UserName { get; set; }
 
+        public string? Prompt { get; set; }
+
         public string? Result { get; set; }
     }
 }

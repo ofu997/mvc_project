@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Exp.Data;
 using Exp.Models;
 using Microsoft.AspNetCore.Authorization;
+using OpenAI_API.Completions;
+using OpenAI_API;
+using Microsoft.Identity.Client;
 
 namespace Exp.Controllers
 {
-    [Authorize]
     public class ResponsesController : Controller
     {
         private readonly ExpContext _context;
@@ -22,6 +24,7 @@ namespace Exp.Controllers
         }
 
         // GET: Responses
+        [Authorize]
         public async Task<IActionResult> Index()
         {
               return _context.Response != null ? 
@@ -58,15 +61,35 @@ namespace Exp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,UserName,Result")] Response response)
+        public async Task<IActionResult> Create([Bind("Id,Date,UserName,Prompt")] Response response)
         {
             if (ModelState.IsValid)
             {
+                string apiKey = "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";
+                string answer = string.Empty;
+                var openai = new OpenAIAPI(apiKey);
+                CompletionRequest completion = new CompletionRequest();
+                completion.Prompt = response.Prompt;
+                completion.Model = OpenAI_API.Models.Model.DavinciText;
+                completion.MaxTokens = 4000;
+                var result = openai.Completions.CreateCompletionsAsync(completion);
+                if (result != null)
+                {
+                    foreach (var item in result.Result.Completions)
+                    {
+                        answer = item.Text;
+                    }
+                }
+
+                response.Result = answer;
+
                 response.Id = Guid.NewGuid();
-                _context.Add(response);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            _context.Add(response);
+
             return View(response);
         }
 
