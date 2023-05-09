@@ -27,9 +27,13 @@ namespace Exp.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
+
+            var userEmail = User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Email)?.Value;
+
               return _context.Response != null ? 
-                          View(await _context.Response.ToListAsync()) :
+                          View(await _context.Response.OrderByDescending(x => x.Date).Where(x => x.UserName == userEmail).ToListAsync()) :
                           Problem("Entity set 'ExpContext.Response'  is null.");
+
         }
 
         // GET: Responses/Details/5
@@ -76,6 +80,10 @@ namespace Exp.Controllers
                    8, 38, 57, 2, 9, 49, 37, // sO4yrDP 
                     57, 33 } // 4T
                 );
+
+                DateTime currentTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Pacific Standard Time"));
+                response.Date = currentTime;
+
                 string answer = string.Empty;
                 var openai = new OpenAIAPI(apiKey);
                 CompletionRequest completion = new CompletionRequest();
@@ -101,7 +109,8 @@ namespace Exp.Controllers
 
             //_context.Response.Add(response); 
 
-            return View(response);
+            //return View(response);
+            return RedirectToRoute(new { controller = "Responses", action = "Create" });
         }
 
         public string Decipher(int[] encryption)
@@ -176,7 +185,7 @@ namespace Exp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Date,UserName,Result")] Response response)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Date,UserName,Prompt,Result")] Response response)
         {
             if (id != response.Id)
             {
@@ -187,6 +196,7 @@ namespace Exp.Controllers
             {
                 try
                 {
+                    response.Result = "(Edited) " + response.Result;
                     _context.Update(response);
                     await _context.SaveChangesAsync();
                 }
