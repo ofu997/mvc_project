@@ -4,7 +4,14 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+@{
+    var userName = @User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.GivenName)?.Value;
+}
+
+<div style="display: inline-block; background-color: #f0ead6; max-width: 60%; padding: 0.5rem;">
+    <p style="font-weight: 600;">Hello, @userName</p>
+    <p style="font-weight: 500;">Your chats are listed below</p>
+</div>
 
 <p>
     <a asp-action="Create">Create New</a>
