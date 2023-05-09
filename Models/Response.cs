@@ -9,7 +9,7 @@ namespace Exp.Models
         public Guid Id { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{MMM-dd-yyyy h:mm tt}")]
+        [DisplayFormat(DataFormatString = "{0:MMM-dd-yyyy hh:mm tt}")]
         [Display(Name = "Created at")]
         public DateTime Date { get; set; }
 
