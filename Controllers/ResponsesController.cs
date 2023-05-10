@@ -107,10 +107,8 @@ namespace Exp.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            //_context.Response.Add(response); 
 
-            //return View(response);
-            return RedirectToRoute(new { controller = "Responses", action = "Create" });
+            return View(response);
         }
 
         public string Decipher(int[] encryption)
