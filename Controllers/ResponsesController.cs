@@ -23,6 +23,10 @@ namespace Exp.Controllers
             _context = context;
         }
 
+        //string userName = User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.GivenName)?.Value;
+
+        //string exp = local
+
         // GET: Responses
         [Authorize]
         public async Task<IActionResult> Index()
@@ -65,7 +69,7 @@ namespace Exp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date,UserName,Prompt")] Response response)
+        public async Task<IActionResult> Create([Bind("UserName,Prompt")] Response response)
         {
             if (ModelState.IsValid)
             {

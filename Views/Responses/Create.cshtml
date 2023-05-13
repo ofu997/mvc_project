@@ -4,30 +4,29 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h3>Write your prompt</h3>
 
-<h4>Response</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
+<div class="row mt-3">
+    <div class="col-md-8">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />
                 <span asp-validation-for="Date" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </div> *@ 
+            
+            <div class="form-group" hidden>
                 <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
+                <input asp-for="UserName" class="form-control" value="@User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Email)?.Value" />
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Prompt" class="control-label"></label>
-                <input asp-for="Prompt" class="form-control" />
+                <textarea asp-for="Prompt" class="form-control" rows="2"></textarea>
                 <span asp-validation-for="Prompt" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
