@@ -17,9 +17,9 @@ builder.Services.AddAuthentication(options =>
     })
         .AddCookie(options =>
         {
-            options.LoginPath = "/account/google-login";
-            //options.LoginPath = "/account/signin";
-            //options.LoginPath = "/account/signout";
+            //options.LoginPath = "/account/google-login";
+            options.LoginPath = "/account/signin";
+            options.LogoutPath = "/account/signout";
         })
         .AddGoogle(options =>
         {
