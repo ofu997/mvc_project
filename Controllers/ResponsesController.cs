@@ -37,7 +37,6 @@ namespace Exp.Controllers
               return _context.Response != null ? 
                           View(await _context.Response.OrderByDescending(x => x.Date).Where(x => x.UserName == userEmail).ToListAsync()) :
                           Problem("Entity set 'ExpContext.Response'  is null.");
-
         }
 
         // GET: Responses/Details/5

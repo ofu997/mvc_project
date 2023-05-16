@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Exp.Extensions;
-using Microsoft.Owin.Host.SystemWeb;
 
 namespace Exp.Controllers
 {
@@ -67,16 +66,16 @@ namespace Exp.Controllers
                 return NotFound();
             }
 
-            var claims = result.Principal.Identities.FirstOrDefault()
-                .Claims.Select(claim => new
-                {
-                    claim.Issuer,
-                    claim.OriginalIssuer,
-                    claim.Type,
-                    claim.Value
-                });
+            var claims = result?.Principal?.Identities?.FirstOrDefault()?
+                                .Claims.Select(claim => new
+                                {
+                                    claim.Issuer,
+                                    claim.OriginalIssuer,
+                                    claim.Type,
+                                    claim.Value
+                                });
 
-            var username = claims.FirstOrDefault(claim => claim.Type == System.Security.Claims.ClaimTypes.Email);
+            var username = claims?.FirstOrDefault(claim => claim.Type == System.Security.Claims.ClaimTypes.Email);
 
             //return Json(claims); 
             return RedirectToRoute(new { controller = "Responses", action = "Index" });
