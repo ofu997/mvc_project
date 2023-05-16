@@ -23,10 +23,6 @@ namespace Exp.Controllers
             _context = context;
         }
 
-        //string userName = User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.GivenName)?.Value;
-
-        //string exp = local
-
         // GET: Responses
         [Authorize]
         public async Task<IActionResult> Index()

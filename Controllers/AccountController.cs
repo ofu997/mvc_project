@@ -48,39 +48,40 @@ namespace Exp.Controllers
                 CookieAuthenticationDefaults.AuthenticationScheme);
         }
 
-        [Route("google-login")]
-        public IActionResult GoogleLogin()
-        {
-            var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
+        //THESE MAY NOT BE NEEDED
 
-            return Challenge(properties, GoogleDefaults.AuthenticationScheme);
-        }
+        //[Route("google-login")]
+        //public IActionResult GoogleLogin()
+        //{
+        //    var properties = new AuthenticationProperties { RedirectUri = Url.Action("GoogleResponse") };
 
-        [Route("google-response")]
-        public async Task<IActionResult> GoogleResponse()
-        {
-            AuthenticateResult result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        //    return Challenge(properties, GoogleDefaults.AuthenticationScheme);
+        //}
 
-            if (result == null)
-            {
-                return NotFound();
-            }
+        //[Route("google-response")]
+        //public async Task<IActionResult> GoogleResponse()
+        //{
+        //    AuthenticateResult result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            var claims = result?.Principal?.Identities?.FirstOrDefault()?
-                                .Claims.Select(claim => new
-                                {
-                                    claim.Issuer,
-                                    claim.OriginalIssuer,
-                                    claim.Type,
-                                    claim.Value
-                                });
+        //    if (result == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var username = claims?.FirstOrDefault(claim => claim.Type == System.Security.Claims.ClaimTypes.Email);
+        //    var claims = result?.Principal?.Identities?.FirstOrDefault()?
+        //                        .Claims.Select(claim => new
+        //                        {
+        //                            claim.Issuer,
+        //                            claim.OriginalIssuer,
+        //                            claim.Type,
+        //                            claim.Value
+        //                        });
 
-            //return Json(claims); 
-            return RedirectToRoute(new { controller = "Responses", action = "Index" });
+        //    var username = claims?.FirstOrDefault(claim => claim.Type == System.Security.Claims.ClaimTypes.Email);
 
-        }
+        //    return RedirectToRoute(new { controller = "Responses", action = "Index" });
+
+        //}
     }
 
 

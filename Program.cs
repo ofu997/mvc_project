@@ -1,15 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+//using Microsoft.Extensions.DependencyInjection;
 using Exp.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.Options;
+//using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ExpContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ResponseContext")
 ));
 
-// Add services to the container.
 
 builder.Services.AddAuthentication(options =>
     {
@@ -17,7 +16,6 @@ builder.Services.AddAuthentication(options =>
     })
         .AddCookie(options =>
         {
-            //options.LoginPath = "/account/google-login";
             options.LoginPath = "/account/signin";
             options.LogoutPath = "/account/signout";
         })
