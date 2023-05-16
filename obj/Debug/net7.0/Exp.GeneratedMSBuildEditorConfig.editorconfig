@@ -9,73 +9,65 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Exp
 build_property.RootNamespace = Exp
-build_property.ProjectDir = D:\Beraten-Projects\Exp\
+build_property.ProjectDir = C:\Users\ofu23\Documents\Projects\mvc_project\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Beraten-Projects\Exp
+build_property.MSBuildProjectDirectory = C:\Users\ofu23\Documents\Projects\mvc_project
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Beraten-Projects/Exp/Pages/_ValidationScriptsPartial.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Account/SignIn.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Account/SignIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxTaWduSW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Home/Index.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Beraten-Projects/Exp/Views/Home/Test.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUZXN0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Beraten-Projects/Exp/Views/Responses/Create.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Responses/Delete.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Responses/Details.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Responses/Edit.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Responses/Index.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Responses/Test.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Test.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXFRlc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Shared/Error.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/_ViewImports.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/_ViewStart.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Beraten-Projects/Exp/Views/Shared/_Layout.cshtml]
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ab44jvt57i
