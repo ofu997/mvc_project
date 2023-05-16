@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Exp.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ExpContext>(options =>
@@ -17,12 +18,23 @@ builder.Services.AddAuthentication(options =>
         .AddCookie(options =>
         {
             options.LoginPath = "/account/google-login";
+            //options.LoginPath = "/account/signin";
+            //options.LoginPath = "/account/signout";
         })
         .AddGoogle(options =>
         {
             options.ClientId = "875386829601-cjsafmch1qtbc2joob6q991q71tlqr6d.apps.googleusercontent.com";
             options.ClientSecret = "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";
-        });
+        })
+        .AddLinkedIn(options =>
+         {
+             options.ClientId = "86eu8a752dqo6x";
+             options.ClientSecret = "Wq0EcTUUS5BL9q9A";
+
+             options.Scope.Add("r_liteprofile");
+             options.Scope.Add("r_emailaddress");
+             options.Scope.Add("w_member_social");
+         });
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

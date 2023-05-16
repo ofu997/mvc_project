@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OtFSCMxHeI339YgB5/mKlCRKW9syq6guI4jN4zoJe+w=",
+  "Hash": "gfP6dTWWtwUktJu0rIh61V12W0AfZkpyaXlyJjukJFM=",
   "Source": "Exp",
   "BasePath": "_content/Exp",
   "Mode": "Default",
@@ -1088,12 +1088,12 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "D:\\Beraten-Projects\\Exp\\wwwroot\\favicon.ico",
+      "Identity": "D:\\Beraten-Projects\\Exp\\wwwroot\\favicon.png",
       "SourceId": "Exp",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\Beraten-Projects\\Exp\\wwwroot\\",
       "BasePath": "_content/Exp",
-      "RelativePath": "favicon.ico",
+      "RelativePath": "favicon.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1102,7 +1102,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\favicon.ico"
+      "OriginalItemSpec": "wwwroot\\favicon.png"
     },
     {
       "Identity": "D:\\Beraten-Projects\\Exp\\wwwroot\\js\\site.js",

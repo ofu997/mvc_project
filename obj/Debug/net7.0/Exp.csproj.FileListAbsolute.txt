@@ -284,3 +284,7 @@ D:\Beraten-Projects\Exp\obj\Debug\net7.0\refint\Exp.dll
 D:\Beraten-Projects\Exp\obj\Debug\net7.0\Exp.pdb
 D:\Beraten-Projects\Exp\obj\Debug\net7.0\Exp.genruntimeconfig.cache
 D:\Beraten-Projects\Exp\obj\Debug\net7.0\ref\Exp.dll
+D:\Beraten-Projects\Exp\bin\Debug\net7.0\AspNet.Security.OAuth.LinkedIn.dll
+D:\Beraten-Projects\Exp\bin\Debug\net7.0\Microsoft.Owin.dll
+D:\Beraten-Projects\Exp\bin\Debug\net7.0\Microsoft.Owin.Host.SystemWeb.dll
+D:\Beraten-Projects\Exp\bin\Debug\net7.0\Owin.dll
