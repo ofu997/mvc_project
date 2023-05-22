@@ -299,7 +299,9 @@ C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Exp.pdb
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\AspNet.Security.OAuth.LinkedIn.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Azure.Core.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Azure.Identity.dll
+C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\BouncyCastle.Cryptography.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Humanizer.dll
+C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\MailKit.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
@@ -355,6 +357,7 @@ C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Microsoft.VisualS
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\MimeKit.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Mono.TextTemplating.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\ofu23\Documents\Projects\mvc_project\bin\Debug\net7.0\NuGet.Common.dll

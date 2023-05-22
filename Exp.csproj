@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="AspNet.Security.OAuth.LinkedIn" Version="7.0.2" />
+    <PackageReference Include="MailKit" Version="4.0.0" />
     <PackageReference Include="microsoft.aspnetcore.authentication.google" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5">
       <TreatAsUsed>true</TreatAsUsed>
