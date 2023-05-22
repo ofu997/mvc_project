@@ -11,6 +11,13 @@ using Microsoft.AspNetCore.Authorization;
 using OpenAI_API.Completions;
 using OpenAI_API;
 using Microsoft.Identity.Client;
+using MailKit.Net.Smtp;
+using MimeKit;
+using System.Net;
+using System.Net.Mail;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
+//using Azure;
 
 namespace Exp.Controllers
 {
@@ -151,7 +158,8 @@ namespace Exp.Controllers
                 { 60, '7' },
                 { 61, '8' },
                 { 62, '9' },
-                { 63, '0' }
+                { 63, '0' },
+                { 64, '.' }
             };
             var resultString = "";
             foreach (var ch in encryption)
@@ -182,7 +190,7 @@ namespace Exp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Date,UserName,Prompt,Result")] Response response)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,UserName,Prompt,Result")] Response response)
         {
             if (id != response.Id)
             {
@@ -193,8 +201,32 @@ namespace Exp.Controllers
             {
                 try
                 {
-                    response.Result = "(Edited) " + response.Result;
                     _context.Update(response);
+                    string userName = "trees73@gmail.com";
+                    string password = "puvqmjarhklfsbnu";
+
+                    string subject = response.Prompt.Length > 50 ? string.Concat(response.Prompt.AsSpan(0, 49), "...") : response.Prompt;
+
+                    ICredentialsByHost credentials = new NetworkCredential(userName, password);
+
+                    System.Net.Mail.SmtpClient smtpClient = new System.Net.Mail.SmtpClient()
+                    {
+                        Host = "smtp.gmail.com",
+                        Credentials = credentials,
+                        //Port = 25,
+                        //Port = 465,
+                        Port = 587,
+                        EnableSsl = true
+                    };
+
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress(userName);
+                    mail.To.Add(string.IsNullOrEmpty(response.UserName)? userName : response.UserName);
+                    mail.Subject = "Your requested AI chat : ";
+                    mail.Body = $"{response.Prompt} \r\n {response.Result}";
+                    //mail.Body = "hello";
+
+                    smtpClient.Send(mail);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -210,7 +242,70 @@ namespace Exp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+
+            //using (var client = new SmtpClient())
+            //{
+            //    //client.Connect = "";
+            //    client.Connect("smtp.gmail.com");
+            //    client.Authenticate("trees73@gmail.com", 
+            //        Decipher(new int[] { 8, 22, 18, 8, 22, 18, 20, 19, 7, 64})
+            //    );
+
+            //    var bodyBuilder = new BodyBuilder
+            //    {
+            //        HtmlBody = $"<p>{response.Prompt}</p><p>{response.Result}</p>",
+            //        TextBody = $"<p>{response.Prompt}</p> \r\n <p>{response.Result}</p>",
+            //    };
+
+            //    var message = new MimeMessage
+            //    {
+            //        Body = bodyBuilder.ToMessageBody()
+            //    };
+            //    message.From.Add(new MailboxAddress("No reply (sendchat)", "trees73@gmail.com"));
+            //    message.To.Add(new MailboxAddress("testing01", response.UserName));
+            //    message.Subject = "Your requested AI chat";
+            //    client.Send(message);
+
+            //    client.Disconnect(true); 
+            //}
             return View(response);
+        }
+
+        public async Task<IActionResult> SendChat(Guid? id)
+        {
+            var response = await _context.Response
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (response == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                string userName = "trees73@gmail.com";
+                string password = "puvqmjarhklfsbnu";
+                string subject = response.Prompt.Length > 50 ? string.Concat(response.Prompt.AsSpan(0, 49), "...") : response.Prompt;
+                ICredentialsByHost credentials = new NetworkCredential(userName, password);
+
+                System.Net.Mail.SmtpClient smtpClient = new System.Net.Mail.SmtpClient()
+                {
+                    Host = "smtp.gmail.com",
+                    Credentials = credentials,
+                    Port = 25,
+                    EnableSsl = true
+                };
+
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress(userName);
+                mail.To.Add(string.IsNullOrEmpty(response.UserName) ? userName : response.UserName);
+                mail.Subject = "Your requested AI chat : ";
+                mail.Body = $"<p>{response.Prompt}</p> \r\n <p>{response.Result}</p>";
+
+                smtpClient.Send(mail);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Responses/Delete/5
