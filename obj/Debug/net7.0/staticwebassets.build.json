@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "lcDNlMqTAY+l6pB19W90z8xO4SacnmGbdlo9Xl39Ux8=",
+  "Hash": "0NVRFBwETSvsGzKaVEMANl/lSZkFHBpWYlDyUr2d68o=",
   "Source": "Exp",
   "BasePath": "_content/Exp",
   "Mode": "Default",
@@ -2106,6 +2106,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\ofu23\\Documents\\Projects\\mvc_project\\wwwroot\\Spinner.svg",
+      "SourceId": "Exp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ofu23\\Documents\\Projects\\mvc_project\\wwwroot\\",
+      "BasePath": "_content/Exp",
+      "RelativePath": "Spinner.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Spinner.svg"
+    },
+    {
+      "Identity": "C:\\Users\\ofu23\\Documents\\Projects\\mvc_project\\wwwroot\\Spinner-1s-200px.svg",
+      "SourceId": "Exp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ofu23\\Documents\\Projects\\mvc_project\\wwwroot\\",
+      "BasePath": "_content/Exp",
+      "RelativePath": "Spinner-1s-200px.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Spinner-1s-200px.svg"
     }
   ]
 }

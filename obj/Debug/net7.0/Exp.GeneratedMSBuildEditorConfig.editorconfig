@@ -36,16 +36,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/SendChat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVzcG9uc2VzXFNlbmRDaGF0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/ofu23/Documents/Projects/mvc_project/Views/Responses/Test.cshtml]

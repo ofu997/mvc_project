@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\Exp.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\ofu23\\Documents\\Projects\\mvc_project\\wwwroot\\Spinner-1s-200px.svg",
+      "PackagePath": "staticwebassets\\Spinner-1s-200px.svg"
+    },
+    {
+      "Id": "C:\\Users\\ofu23\\Documents\\Projects\\mvc_project\\wwwroot\\Spinner.svg",
+      "PackagePath": "staticwebassets\\Spinner.svg"
+    },
+    {
       "Id": "C:\\Users\\ofu23\\Documents\\Projects\\mvc_project\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
