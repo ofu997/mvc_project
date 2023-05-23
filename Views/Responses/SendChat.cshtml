@@ -1,0 +1,85 @@
+﻿@model Exp.Models.Response
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Send Chat</h1>
+
+<hr />
+
+<section id="progress" class="hidden">
+    <div class="submit-progress">
+        <i class="fa fa-2x fa-spinner fa-spin"></i>
+        <label>Please wait while Saving Data...</label>
+    </div>
+
+    <img src="~/Spinner-1s-200px.svg"
+         height="100px"
+         style="margin-left: auto; margin-right: auto; display:block;" />
+</section>
+
+<div class="row" id="edit-form">
+    <div class="col-md-10">
+        <form asp-action="SendChat">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group hidden">
+                    <label asp-for="Date" class="control-label"></label>
+                    <input asp-for="Date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+@*                <div class="form-group">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>*@
+@*                <div class="form-group">
+                    <label asp-for="Result" class="control-label"></label>
+                    <textarea asp-for="Result" class="form-control" rows="10"></textarea>
+                    <span asp-validation-for="Result" class="text-danger"></span>
+                </div>*@
+                <div class="form-group">
+                <textarea class="form-control"  rows="10">@Model.Result</textarea>
+                </div>
+                <div class="form-group">
+                    @*add onclick*@
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" asp-for="Prompt"/>
+                </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="@Url.Action("SendChatFunction", "Responses", new{ id = Model.Id})" onclick="return DisplayLoading(this, 'Saving...');">Send Chat</a>
+</div>
+
+<a asp-action="Index"></a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        function DisplayLoading(button, message) {
+
+            event.preventDefault();
+
+            $(button).prop("disabled", true).text(message);
+
+            $("main").addClass("gray-bg");
+
+            $("#progress").removeClass("hidden");
+
+            $("#edit-form").addClass("hidden");
+
+
+            setTimeout(function () {
+                $("a").innerHTML = 'Sending Chat'; 
+            }, 5);
+            return true;
+        }
+    </script>
+}

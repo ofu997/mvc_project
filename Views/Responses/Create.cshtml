@@ -4,10 +4,25 @@
     ViewData["Title"] = "Create";
 }
 
+
 <h3>Write your prompt</h3>
 
 <hr />
-<div class="row mt-3">
+
+<section id="progress" class="hidden">
+    <div class="submit-progress">
+        <i class="fa fa-2x fa-spinner fa-spin"></i>
+        <label>Please wait while Saving Data...</label>
+    </div>
+
+    <img 
+        src="~/Spinner-1s-200px.svg"
+        height="100px" 
+        style="margin-left: auto; margin-right: auto; display:block;" 
+    />
+</section>
+
+<div class="row mt-3" id="create-form">
     <div class="col-md-8">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -22,7 +37,9 @@
                 <span asp-validation-for="Prompt" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" 
+                onclick="DisplayLoading(this, 'Saving...');" 
+                />
             </div>
         </form>
     </div>
@@ -34,4 +51,24 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        function DisplayLoading(button, message) {
+
+            event.preventDefault();
+            
+            $(button).prop("disabled", true).text(message);
+
+            $("main").addClass("gray-bg"); 
+
+            $("#progress").removeClass("hidden");
+
+            $("#create-form").addClass("hidden");
+
+
+            setTimeout(function () {
+                $("form").submit(); 
+            }, 5);
+            return true; 
+        }
+    </script>
 }
