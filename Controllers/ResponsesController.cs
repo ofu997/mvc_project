@@ -169,8 +169,8 @@ namespace Exp.Controllers
             return resultString; 
         }
 
-        // GET: Responses/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        // GET: Responses/SendChat/5
+        public async Task<IActionResult> SendChat(Guid? id)
         {
             if (id == null || _context.Response == null)
             {
@@ -185,27 +185,27 @@ namespace Exp.Controllers
             return View(response);
         }
 
-        // POST: Responses/Edit/5
+        // POST: Responses/SendChat/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,UserName,Prompt,Result")] Response response)
+        public async Task<IActionResult> SendChat(Guid id, [Bind("Id")] Response formResponse)
         {
-            if (id != response.Id)
+            if (id != formResponse.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+
                 try
                 {
-                    _context.Update(response);
-                    string userName = "trees73@gmail.com";
+                    var response = await _context.Response
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                string userName = "trees73@gmail.com";
                     string password = "puvqmjarhklfsbnu";
 
-                    string subject = response.Prompt.Length > 50 ? string.Concat(response.Prompt.AsSpan(0, 49), "...") : response.Prompt;
+                    string subject = response?.Prompt.Length > 50 ? string.Concat(response.Prompt.AsSpan(0, 49), "...") : response.Prompt;
 
                     ICredentialsByHost credentials = new NetworkCredential(userName, password);
 
@@ -213,8 +213,6 @@ namespace Exp.Controllers
                     {
                         Host = "smtp.gmail.com",
                         Credentials = credentials,
-                        //Port = 25,
-                        //Port = 465,
                         Port = 587,
                         EnableSsl = true
                     };
@@ -222,16 +220,18 @@ namespace Exp.Controllers
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress(userName);
                     mail.To.Add(string.IsNullOrEmpty(response.UserName)? userName : response.UserName);
-                    mail.Subject = "Your requested AI chat : ";
+                    mail.Subject = $"Your requested AI chat";
                     mail.Body = $"{response.Prompt} \r\n {response.Result}";
-                    //mail.Body = "hello";
 
                     smtpClient.Send(mail);
+
+                    response.Sent = true;
+                    _context.Update(response);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ResponseExists(response.Id))
+                    if (!ResponseExists(formResponse.Id))
                     {
                         return NotFound();
                     }
@@ -241,7 +241,6 @@ namespace Exp.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
 
 
             //using (var client = new SmtpClient())
@@ -269,10 +268,9 @@ namespace Exp.Controllers
 
             //    client.Disconnect(true); 
             //}
-            return View(response);
         }
 
-        public async Task<IActionResult> SendChat(Guid? id)
+        public async Task<IActionResult> SendChatFunction (Guid? id)
         {
             var response = await _context.Response
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -292,7 +290,7 @@ namespace Exp.Controllers
                 {
                     Host = "smtp.gmail.com",
                     Credentials = credentials,
-                    Port = 25,
+                    Port = 587,
                     EnableSsl = true
                 };
 
@@ -300,7 +298,7 @@ namespace Exp.Controllers
                 mail.From = new MailAddress(userName);
                 mail.To.Add(string.IsNullOrEmpty(response.UserName) ? userName : response.UserName);
                 mail.Subject = "Your requested AI chat : ";
-                mail.Body = $"<p>{response.Prompt}</p> \r\n <p>{response.Result}</p>";
+                mail.Body = $"{response.Prompt} \r\n {response.Result}";
 
                 smtpClient.Send(mail);
             }
