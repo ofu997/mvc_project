@@ -13,10 +13,12 @@ namespace Exp.Models
         [Display(Name = "Created at")]
         public DateTime Date { get; set; }
 
-        public string? UserName { get; set; }
+        public required string UserName { get; set; }
 
         public required string Prompt { get; set; }
 
-        public required string Result { get; set; }
+        public string? Result { get; set; }
+
+        public bool Sent { get; set; }
     }
 }
