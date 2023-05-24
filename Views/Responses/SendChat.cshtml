@@ -24,31 +24,31 @@
         <form asp-action="SendChat">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
-                <div class="form-group hidden">
+              @*<div class="form-group hidden">
                     <label asp-for="Date" class="control-label"></label>
                     <input asp-for="Date" class="form-control" />
                     <span asp-validation-for="Date" class="text-danger"></span>
-                </div>
-@*                <div class="form-group">
+                </div>*@
+                <div class="form-group hidden">
                     <label asp-for="UserName" class="control-label"></label>
                     <input asp-for="UserName" class="form-control" />
                     <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>*@
-@*                <div class="form-group">
+                </div>
+                <div class="form-group hidden">
+                    <input type="hidden" asp-for="Prompt"/>
+                </div>
+                <div class="form-group hidden">
                     <label asp-for="Result" class="control-label"></label>
                     <textarea asp-for="Result" class="form-control" rows="10"></textarea>
                     <span asp-validation-for="Result" class="text-danger"></span>
-                </div>*@
-                <div class="form-group">
-                <textarea class="form-control"  rows="10">@Model.Result</textarea>
                 </div>
                 <div class="form-group">
-                    @*add onclick*@
-                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <textarea class="form-control" rows="10">@Model.Result</textarea>
                 </div>
-
                 <div class="form-group">
-                    <input type="hidden" asp-for="Prompt"/>
+                    <input type="submit" value="Save" class="btn btn-primary"
+                       onclick="DisplayLoading(this, 'Saving...');" 
+                    />
                 </div>
         </form>
     </div>
@@ -75,9 +75,8 @@
 
             $("#edit-form").addClass("hidden");
 
-
             setTimeout(function () {
-                $("a").innerHTML = 'Sending Chat'; 
+                $("form").submit();
             }, 5);
             return true;
         }
