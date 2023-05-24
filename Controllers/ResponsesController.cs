@@ -17,6 +17,7 @@ using System.Net;
 using System.Net.Mail;
 using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
+using Org.BouncyCastle.Tls.Crypto.Impl.BC;
 //using Azure;
 
 namespace Exp.Controllers
@@ -121,6 +122,8 @@ namespace Exp.Controllers
         {
             Dictionary<int, char> Encryptions = new Dictionary<int, char>()
             {
+                //mazx  qyza  kzsw  dxiz
+                // 14,26,1,3,  10,2,1,26,  16,1,8,4,  23,3,18,1  
                 { 1,'z' }, { 27, 'Z'},
                 { 2, 'y' }, { 28, 'Y'},
                 { 3, 'x' }, { 29, 'X'},
@@ -190,84 +193,54 @@ namespace Exp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SendChat(Guid id, [Bind("Id")] Response formResponse)
+        public async Task<IActionResult> SendChat(Guid id, [Bind("Id,UserName,Prompt,Result")] Response formResponse)
         {
             if (id != formResponse.Id)
             {
                 return NotFound();
             }
 
+            try
+            {
+                string userName = "sendchat.ai@gmail.com";
+                string password = Decipher(new int[] { 14, 26, 1, 3, 10, 2, 1, 26, 16, 1, 8, 4, 23, 3, 18, 1 });
 
-                try
+                string subject = string.IsNullOrEmpty(formResponse.Prompt) ? "" : string.Concat(formResponse.Prompt.AsSpan(0, 49), "...");
+
+                ICredentialsByHost credentials = new NetworkCredential(userName, password);
+
+                System.Net.Mail.SmtpClient smtpClient = new System.Net.Mail.SmtpClient()
                 {
-                    var response = await _context.Response
-                    .FirstOrDefaultAsync(m => m.Id == id);
-                string userName = "trees73@gmail.com";
-                    string password = "puvqmjarhklfsbnu";
+                    Host = "smtp.gmail.com",
+                    Credentials = credentials,
+                    Port = 587,
+                    EnableSsl = true
+                };
 
-                    string subject = response?.Prompt.Length > 50 ? string.Concat(response.Prompt.AsSpan(0, 49), "...") : response.Prompt;
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress(userName);
+                mail.To.Add(string.IsNullOrEmpty(formResponse.UserName)? userName : formResponse.UserName);
+                mail.Subject = "Your requested AI chat";
+                mail.Body = $"{formResponse.Prompt} \r\n {formResponse.Result}";
 
-                    ICredentialsByHost credentials = new NetworkCredential(userName, password);
+                smtpClient.Send(mail);
 
-                    System.Net.Mail.SmtpClient smtpClient = new System.Net.Mail.SmtpClient()
-                    {
-                        Host = "smtp.gmail.com",
-                        Credentials = credentials,
-                        Port = 587,
-                        EnableSsl = true
-                    };
-
-                    MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress(userName);
-                    mail.To.Add(string.IsNullOrEmpty(response.UserName)? userName : response.UserName);
-                    mail.Subject = $"Your requested AI chat";
-                    mail.Body = $"{response.Prompt} \r\n {response.Result}";
-
-                    smtpClient.Send(mail);
-
-                    response.Sent = true;
-                    _context.Update(response);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
+                formResponse.Sent = true;
+                _context.Update(formResponse);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ResponseExists(formResponse.Id))
                 {
-                    if (!ResponseExists(formResponse.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    return NotFound();
                 }
-                return RedirectToAction(nameof(Index));
-
-
-            //using (var client = new SmtpClient())
-            //{
-            //    //client.Connect = "";
-            //    client.Connect("smtp.gmail.com");
-            //    client.Authenticate("trees73@gmail.com", 
-            //        Decipher(new int[] { 8, 22, 18, 8, 22, 18, 20, 19, 7, 64})
-            //    );
-
-            //    var bodyBuilder = new BodyBuilder
-            //    {
-            //        HtmlBody = $"<p>{response.Prompt}</p><p>{response.Result}</p>",
-            //        TextBody = $"<p>{response.Prompt}</p> \r\n <p>{response.Result}</p>",
-            //    };
-
-            //    var message = new MimeMessage
-            //    {
-            //        Body = bodyBuilder.ToMessageBody()
-            //    };
-            //    message.From.Add(new MailboxAddress("No reply (sendchat)", "trees73@gmail.com"));
-            //    message.To.Add(new MailboxAddress("testing01", response.UserName));
-            //    message.Subject = "Your requested AI chat";
-            //    client.Send(message);
-
-            //    client.Disconnect(true); 
-            //}
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> SendChatFunction (Guid? id)
