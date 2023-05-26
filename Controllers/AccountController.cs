@@ -31,10 +31,14 @@ namespace Exp.Controllers
                 return BadRequest();
             }
 
+            var properties = new AuthenticationProperties { RedirectUri = Url.Action("AuthResponse") };
+
             // Instruct the middleware corresponding to the requested external identity
             // provider to redirect the user agent to its own authorization endpoint.
             // Note: the authenticationScheme parameter must match the value configured in Startup.cs
-            return Challenge(new AuthenticationProperties { RedirectUri = "/" }, provider);
+            //original : return Challenge(new AuthenticationProperties { RedirectUri = "/" }, provider);
+
+            return Challenge(properties, provider);
         }
 
         [HttpGet("~/signout")]
@@ -58,30 +62,26 @@ namespace Exp.Controllers
         //    return Challenge(properties, GoogleDefaults.AuthenticationScheme);
         //}
 
-        //[Route("google-response")]
-        //public async Task<IActionResult> GoogleResponse()
-        //{
-        //    AuthenticateResult result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        [Route("auth-response")]
+        public async Task<IActionResult> AuthResponse()
+        {
+            AuthenticateResult result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-        //    if (result == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (result == null)
+            {
+                return NotFound();
+            }
 
-        //    var claims = result?.Principal?.Identities?.FirstOrDefault()?
-        //                        .Claims.Select(claim => new
-        //                        {
-        //                            claim.Issuer,
-        //                            claim.OriginalIssuer,
-        //                            claim.Type,
-        //                            claim.Value
-        //                        });
+            var claims = result?.Principal?.Identities?.FirstOrDefault()?
+                    .Claims;
 
-        //    var username = claims?.FirstOrDefault(claim => claim.Type == System.Security.Claims.ClaimTypes.Email);
+            var username = claims?.FirstOrDefault(claim => claim.Type == System.Security.Claims.ClaimTypes.GivenName)?.Value;
 
-        //    return RedirectToRoute(new { controller = "Responses", action = "Index" });
+            TempData["Message"] = username;
 
-        //}
+            return RedirectToRoute(new { controller = "Responses", action = "Index" });
+
+        }
     }
 
 
