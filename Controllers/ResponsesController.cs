@@ -1,24 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Exp.Data;
+﻿using Exp.Data;
 using Exp.Models;
 using Microsoft.AspNetCore.Authorization;
-using OpenAI_API.Completions;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OpenAI_API;
-using Microsoft.Identity.Client;
-using MailKit.Net.Smtp;
-using MimeKit;
+using OpenAI_API.Completions;
 using System.Net;
 using System.Net.Mail;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
-using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
-using Org.BouncyCastle.Tls.Crypto.Impl.BC;
-//using Azure;
 
 namespace Exp.Controllers
 {
@@ -33,14 +21,15 @@ namespace Exp.Controllers
 
         // GET: Responses
         [Authorize]
+        [HttpGet("~/Chat")]
         public async Task<IActionResult> Index()
         {
 
             var userEmail = User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Email)?.Value;
 
-              return _context.Response != null ? 
-                          View(await _context.Response.OrderByDescending(x => x.Date).Where(x => x.UserName == userEmail).ToListAsync()) :
-                          Problem("Entity set 'ExpContext.Response'  is null.");
+            return _context.Response != null ?
+                        View(await _context.Response.OrderByDescending(x => x.Date).Where(x => x.UserName == userEmail).ToListAsync()) :
+                        Problem("Entity set 'ExpContext.Response'  is null.");
         }
 
         // GET: Responses/Details/5
@@ -76,7 +65,7 @@ namespace Exp.Controllers
         {
             if (ModelState.IsValid)
             {
-                string apiKey = Decipher( new int[] 
+                string apiKey = Decipher(new int[]
                     { 8, 16, 53, 54, 59, 10, // sk-16q
                     52, 51, 60, 16, 36, 24, // AB7kQc
                     43, 59, 35, 55, 36, 17, // J6R2Qj
@@ -169,7 +158,7 @@ namespace Exp.Controllers
             {
                 resultString += Encryptions[ch];
             }
-            return resultString; 
+            return resultString;
         }
 
         // GET: Responses/SendChat/5
@@ -205,7 +194,7 @@ namespace Exp.Controllers
                 string userName = "sendchat.ai@gmail.com";
                 string password = Decipher(new int[] { 14, 26, 1, 3, 10, 2, 1, 26, 16, 1, 8, 4, 23, 3, 18, 1 });
 
-                string subject = string.IsNullOrEmpty(formResponse.Prompt) ? "" : string.Concat(formResponse.Prompt.AsSpan(0, 49), "...");
+                string subject = string.IsNullOrEmpty(formResponse.Prompt) ? "" : formResponse.Prompt.Length > 49 ? string.Concat(formResponse.Prompt.AsSpan(0, 49), "...") : formResponse.Prompt;
 
                 ICredentialsByHost credentials = new NetworkCredential(userName, password);
 
@@ -219,7 +208,7 @@ namespace Exp.Controllers
 
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress(userName);
-                mail.To.Add(string.IsNullOrEmpty(formResponse.UserName)? userName : formResponse.UserName);
+                mail.To.Add(string.IsNullOrEmpty(formResponse.UserName) ? userName : formResponse.UserName);
                 mail.Subject = "Your requested AI chat";
                 mail.Body = $"{formResponse.Prompt} \r\n {formResponse.Result}";
 
@@ -243,7 +232,7 @@ namespace Exp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> SendChatFunction (Guid? id)
+        public async Task<IActionResult> SendChatFunction(Guid? id)
         {
             var response = await _context.Response
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -311,14 +300,14 @@ namespace Exp.Controllers
             {
                 _context.Response.Remove(response);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ResponseExists(Guid id)
         {
-          return (_context.Response?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Response?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
         public IActionResult Test()
