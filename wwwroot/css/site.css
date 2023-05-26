@@ -45,3 +45,25 @@ body {
 .gray-bg {
     background-color: #ebeceb;
 }
+
+.announcement {
+    padding: 2rem;
+    background-image: linear-gradient(#efefef, #e7feff);
+    justify-content: center;
+}
+
+.announcement > * {
+    margin: 2rem auto;
+    justify-content: center;
+    text-align: center;
+}
+
+.announcement p {
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+
+.emphasize {
+    font-weight: 600;
+    font-size: 1.5rem;
+}

@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="jumbotron">
+<div>
 
     @{
         var userName = User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.GivenName)?.Value;
@@ -16,7 +16,13 @@
     }
     else
     {
-        <h1>Welcome, guest</h1>
-        <a class="btn btn-lg btn-success" href="/signin?returnUrl=%2F">Sign in</a>
+        <section class="announcement">
+            <h3>Welcome, guest</h3>
+            <p>Sign in to log interactions with an AI chatbot</p>
+            <p>If you wish, you can save answers by emailing them to yourself</p>
+            <div>
+                <a class="btn btn-sm btn-success cntr-h" asp-area="" asp-controller="Account" asp-action="SignIn">Sign In</a>
+            </div>
+        </section>
     }
 </div>

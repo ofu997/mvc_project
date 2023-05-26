@@ -23,8 +23,22 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Responses" asp-action="Index">Response</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Responses" asp-action="Index">Chat</a>
                         </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        @if (User?.Identity?.IsAuthenticated == true)
+                        {
+                            <li class="nav-item" style="float: right;">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignOutCurrentUser">Sign Out</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item" style="float: right;">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignIn">Sign In</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
