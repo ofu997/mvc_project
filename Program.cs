@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
-//using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Exp.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
-//using Microsoft.Extensions.Options;
+using Azure.Identity;
+using Microsoft.Extensions.Azure;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ExpContext>(options =>
@@ -17,8 +19,8 @@ builder.Services.AddAuthentication(options =>
         .AddCookie(options =>
         {
             //options.LoginPath = "/account/signin";
-            options.LoginPath = "/account/google-login"; 
-            options.LogoutPath = "/account/signout";
+            options.LoginPath = "/signin"; 
+            options.LogoutPath = "/signout";
         })
         .AddGoogle(options =>
         {
