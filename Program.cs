@@ -37,6 +37,11 @@ builder.Services.AddAuthentication(options =>
              options.Scope.Add("w_member_social");
          });
 builder.Services.AddControllersWithViews();
+builder.Services.AddAzureClients(clientBuilder =>
+{
+    clientBuilder.AddBlobServiceClient(builder.Configuration["sendchat_connectionstring:blob"], preferMsi: true);
+    clientBuilder.AddQueueServiceClient(builder.Configuration["sendchat_connectionstring:queue"], preferMsi: true);
+});
 
 var app = builder.Build();
 

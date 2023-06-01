@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "storage1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/Exp20230526175156/providers/Microsoft.ServiceLinker/linkers/sendchat_connectionstring_481B6C7194, /subscriptions/98454976-a342-4042-9ff1-46081062b5db/resourcegroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/Exp20230526175156/providers/Microsoft.ServiceLinker/linkers/sendchat_connectionstring_E2E754B4D9",
+      "secretStore": null,
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/sendchatpstorage",
+      "type": "storage.azure",
+      "connectionId": "sendchat_connectionstring",
+      "dynamicId": null
+    },
+    "mssql1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/Exp20230526175156/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsExpContext_9CB603A75D",
+      "secretStore": null,
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/sendchatdbserver/databases/Exp_2nd_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:ExpContext",
+      "dynamicId": null
+    }
+  }
+}
