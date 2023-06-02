@@ -3,22 +3,7 @@
     "mssql1": {
       "restored": true,
       "restoreTime": "2023-04-20T23:36:10.7981882Z"
-    },
-    "storage1": {
-      "restored": true,
-      "restoreTime": "2023-06-01T05:04:30.3122254Z"
     }
   },
-  "parameters": {
-    "storage1.resourceGroupName": {
-      "Name": "storage1.resourceGroupName",
-      "Type": "resourceGroup",
-      "Value": "appsvc_linux_centralus"
-    },
-    "storage1.subscriptionId": {
-      "Name": "storage1.subscriptionId",
-      "Type": "subscription",
-      "Value": "98454976-a342-4042-9ff1-46081062b5db"
-    }
-  }
+  "parameters": {}
 }

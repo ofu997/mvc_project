@@ -16,7 +16,7 @@
     <WebStackScaffolding_DbContextTypeFullName>Exp.Data.ExpContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
-    <ActiveDebugProfile>Exp</ActiveDebugProfile>
+    <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <WebStackScaffolding_ViewDialogWidth>800</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_IdentityDialogWidth>650</WebStackScaffolding_IdentityDialogWidth>
     <NameOfLastUsedPublishProfile>C:\Users\ofu23\Documents\Projects\mvc_project\.github\workflows\sendchat-ai.yml</NameOfLastUsedPublishProfile>
