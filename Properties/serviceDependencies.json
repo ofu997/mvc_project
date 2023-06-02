@@ -4,14 +4,18 @@
       "ignored": "true",
       "type": "secrets.keyVault"
     },
-    "storage1": {
-      "type": "storage",
-      "connectionId": "sendchat_connectionstring",
-      "dynamicId": null
-    },
     "mssql1": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:ExpContext",
+      "dynamicId": null
+    },
+    "storage1": {
+      "type": "storage",
+      "connectionId": "sendchat_connectionstring"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:ResponseContext",
       "dynamicId": null
     }
   }
