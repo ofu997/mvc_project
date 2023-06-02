@@ -19,11 +19,34 @@
     </div>
 }
 
-
-
 <p id="createNew">
     <a asp-action="Create" class="my-box-shadow">Create New</a>
 </p>
+
+<div class="flex wrap">
+@foreach(var item in Model)
+{
+    var prompt = item.Prompt.Length > 80 ? string.Concat(item.Prompt.AsSpan(0, 79), "...") : item.Prompt;
+    var response = String.IsNullOrEmpty(item.Result) ? "" : item.Result.Length > 200 ? string.Concat(item.Result.AsSpan(0, 199), "...") : item.Result;
+
+    <div class="card col-md-5 col-sm-10 mx-2 my-2 p-3 card-style">
+            @if (item.Sent)
+            {
+                <section class="flex">
+                    <img src="~/favicon.png" height="20" /><p class="small-text">Sent</p>
+                </section>
+            }
+
+        <p>@prompt</p>
+        <p>@response</p>
+        <p class="small-text">@item.Date</p>
+        <section class="flex">
+            <a asp-action="SendChat" asp-route-id="@item.Id">Send Chat</a> 
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </section>
+    </div>
+}
+</div>
 
 <table class="table">
     <thead>
